@@ -1,16 +1,17 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { UserDto } from './dto/login-user.dto';
 
 @Controller('users')
 export class UsersController {
 
 
     @Post('login')
-    login() {
+    login(@Body() loginUserDto: UserDto) {
         return 'This action logs a user in';
     }
 
     @Post('register')
-    register() {
+    register(@Body() registerUserDto: UserDto) {
         return 'This action registers a new user';
     }
 
