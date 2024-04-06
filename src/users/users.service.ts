@@ -11,8 +11,6 @@ import { UserDto } from './dto/login-user.dto';
 @Injectable()
 export class UsersService {
 
-    private users: UserDto[] = [];
-
     constructor(
         private jwtService: JwtService,
         private blacklistService: BlacklistService,
