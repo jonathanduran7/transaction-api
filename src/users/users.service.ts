@@ -41,15 +41,15 @@ export class UsersService {
     async register(userDto: UserDto): Promise<{ access_token: string } | HttpException> {
         const { userName, password } = userDto;
 
-        const user = await this.userRepository.findOneBy({ userName });
+        const isUserValid = await this.userRepository.findOneBy({ userName });
 
-        if (user) {
+        if (isUserValid) {
             return new HttpException('User already exists', 400);
         }
 
         const encryptedPassword = await this.encryptPassword(password);
 
-        this.userRepository.save({ userName, password: encryptedPassword });
+        const user = await this.userRepository.save({ userName, password: encryptedPassword });
 
         const payload = { sub: user.id, username: user.userName}
 
