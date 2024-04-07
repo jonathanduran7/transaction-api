@@ -5,10 +5,15 @@ import { Account } from './account.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Currency } from './currency.entity';
 import { AccountsService } from './accounts.service';
+import { ConfigModule } from '@nestjs/config';
+import configuration from 'src/config/configuration';
 
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      load: [configuration],
+    }),
     TypeOrmModule.forFeature([Account, Currency]),
   ],
   controllers: [AccountsController],

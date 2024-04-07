@@ -8,6 +8,7 @@ import { BlacklistService } from './users/services/blacklist.service';
 import { TransferModule } from './transfer/transfer.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { ConfigModule } from '@nestjs/config';
+import { TransactionModule } from './transaction/transaction.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -28,6 +29,7 @@ import configuration from './config/configuration';
     UsersModule,
     AccountsModule,
     TransferModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService, BlacklistService]

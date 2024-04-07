@@ -7,9 +7,13 @@ import { BlacklistService } from './services/blacklist.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import configuration from 'src/config/configuration';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      load: [configuration],
+    }),
     JwtModule.register({
       global: true,
       secret: configuration().jwtSecret,
