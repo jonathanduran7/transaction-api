@@ -8,9 +8,11 @@ import { AccountsModule } from 'src/accounts/accounts.module';
 import { CurrencyConversionService } from './services/currency-conversion.service';
 import { CurrencyConversionRecord } from 'src/entities/currency-conversion-record.entity';
 import { CacheModule } from '@nestjs/cache-manager';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule,
     TypeOrmModule.forFeature([
       Transaction, CurrencyConversionRecord
     ]),
