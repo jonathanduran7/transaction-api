@@ -60,9 +60,11 @@ export class TransferService {
             dataSave.accountToBalance = accountTo.balance + data.result;
         }
 
-        await this.transactionRepository.save(dataSave);
-        await this.accountService.updateBalance(accountFrom.id, dataSave.accountFromBalance);
-        await this.accountService.updateBalance(accountTo.id, dataSave.accountToBalance);
+        await Promise.all([
+            this.transactionRepository.save(dataSave),
+            this.accountService.updateBalance(accountFrom.id, dataSave.accountFromBalance),
+            this.accountService.updateBalance(accountTo.id, dataSave.accountToBalance)
+        ])
 
         return 'Transfer completed successfully!'
     }
